@@ -26,24 +26,33 @@ public class Validators {
      */
     public static boolean isValidPath(String path){
         String lastFour = path.substring(path.length()-4);
+        //System.out.println(lastFour);
         String lastFive = path.substring(path.length()-5);
+        //System.out.println(lastFive);
         String beginning5 = path.substring(0, path.length()-5);
+        //System.out.println(beginning5);
         String beginning4 = path.substring(0, path.length()-4);
+        //System.out.println(beginning4);
         String lastFiveLowercase = lastFive.toLowerCase();
+        //System.out.println(lastFiveLowercase);
         String lastFourLowercase = lastFour.toLowerCase();
+        //System.out.println(lastFourLowercase);
         String html = ".html";
         String mp3 = ".mp3";
         String m4a = ".m4a";
         String mp4 = ".mp4";
-        if(lastFiveLowercase.equals(html)){
+        if(lastFiveLowercase.matches(html)){
+            //System.out.println("in last five lowercase");
             for(int i = 0; i < beginning5.length(); i++){
+                //System.out.println("in begining 5");
                 String currentChar = String.valueOf(beginning5.charAt(i));
                 if (!currentChar.matches("[a-zA-Z1-9\\-\\/\\.\\\\]") /*|| currentChar.matches("\\/")*/){
+                    //System.out.println(currentChar);
                     return false;
                 }
-                return true;
             }
-        }else if(lastFourLowercase.equals(html) || lastFourLowercase.equals(mp3) || lastFourLowercase.equals(m4a) || lastFourLowercase.equals(mp4)){
+            return true;
+        }else if(lastFourLowercase.equals(mp3) || lastFourLowercase.equals(m4a) || lastFourLowercase.equals(mp4)){
             for(int i = 0; i < beginning4.length(); i++){
                 String currentChar = String.valueOf(beginning4.charAt(i));
                 if (!currentChar.matches("[a-zA-Z1-9\\-\\/\\.\\\\]") /*|| currentChar.matches("\\/")*/){

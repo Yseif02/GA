@@ -27,9 +27,11 @@ public class Event {
             throw new IllegalArgumentException();
         }
         //Check on this later
-        if(duration < 0 || conversion < 0){
+        if(duration > 0 || conversion > 0){
             this.duration = duration;
             this.conversion = conversion;
+        }else {
+            throw new IllegalArgumentException();
         }
     }
     public String getPath(){

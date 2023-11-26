@@ -1,15 +1,25 @@
 package edu.yu.cs.intro.ga;
 
 public class Resource {
+    Event[] events = new Event[5];
+    public void setEvents(){
+        //custom method
+        this.events[0] = new Event("456.html", 10, 5.5, "search");
+        this.events[1] = new Event("456.html", 1, 5.5, "search");
+        this.events[2] = new Event("456.html", 8, 5.5, "search");
+        this.events[3] = new Event("456.html", 7, 5.5, "search");
+        this.events[4] = new Event("456.html", 13, 5.5, "search");
+    }
     private String path;
     /**
      * @throws IllegalArgumentException if the path is invalid
-     * @param path the path which this resource represents
      * @see Validators#isValidPath(String)
      */
     public Resource(String path){
-        if(Validators.isValidPath(path)){
+        //this.path = path;
+        if((Validators.isValidPath(path))){
             this.path = path;
+            return;
         }
         throw new IllegalArgumentException();
     }
@@ -23,7 +33,25 @@ public class Resource {
      * @param e the event to add to this resource
      */
     protected void addEvent(Event e){
-
+        if(e == null || e.getPath() != this.path){
+            throw new IllegalArgumentException();
+        }
+        for (int i = 0; i < events.length;i++){
+            if(events[i] == null){
+                events[i] = e;
+            }else {
+                Event[] newEvents = new Event[events.length+10];
+                for (int j = 0; j < events.length; j++){
+                    newEvents[j] = events[j];
+                }
+                for (int k = 0; k < newEvents.length;i++) {
+                    if (newEvents[k] == null) {
+                        newEvents[k] = e;
+                        return;
+                    }
+                }
+            }
+        }
     }
     /**
      * @return the events in the order in which they were added to the Resource. The array
@@ -31,20 +59,41 @@ public class Resource {
     array which is Resource's instance variable.
      */
     public Event[] getEventsInChronologicalOrder(){
-        Event[] resources = new Event[1];
-        return new Event[1];
+        int counter = 0;
+        for(Event event : events) {
+            if (event != null){
+                counter++;
+            }
+        }
+        Event[] newEvents = new Event[counter];
+        for(int i =0; i < newEvents.length; i++ ){
+            newEvents[i] = events[i];
+            System.out.println(newEvents[i].getPath());
+            System.out.println(newEvents[i].getDuration());
+            System.out.println(newEvents[i].getConversion());
+            System.out.println(newEvents[i].getAcquisition());
+        }
+        return newEvents;
     }
     /**
      * @return the duration of all the events on this resource combined
      */
     public int getTotalDuration(){
-        return 1;
+        int totalDuration = 0;
+        for (Event event: events) {
+            totalDuration += event.getDuration();
+        }
+        return totalDuration;
     }
     /**
      * @return the conversion value of all the events on this resource combined
      */
     public double getTotalConversion(){
-        return 1;
+        double totalConversion = 0;
+        for (Event event: events) {
+            totalConversion += event.getConversion();
+        }
+        return totalConversion;
     }
     /**
      * @return an array of length 3, in which [0] holds the count of events acquired via
@@ -54,7 +103,23 @@ public class Resource {
      * @see Validators#A_REFERRAL
      */
     public int[] getTotalAcquisitionCounts(){
-        return new int[1];
+        int[] acquisitionArray = new int[3];
+        int totalSearch = 0;
+        int totalDirect = 0;
+        int totalReferral = 0;
+        for (Event event: events) {
+            if (event.getAcquisition().matches("search")){
+                totalSearch++;
+            } else if (event.getAcquisition().matches("direct")) {
+                totalDirect++;
+            } else if (event.getAcquisition().matches("referral")) {
+                totalReferral++;
+            }
+        }
+        acquisitionArray[0] = totalSearch;
+        acquisitionArray[1] = totalDirect;
+        acquisitionArray[2] = totalReferral;
+        return acquisitionArray;
     }
 
 }
