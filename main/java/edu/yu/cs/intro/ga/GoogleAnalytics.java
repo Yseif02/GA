@@ -97,8 +97,10 @@ public class GoogleAnalytics {
      * @see Event#Event(String, int, double, String)
      */
     public void addEvent(String path, int duration, double conversion, String acquisition){
-        Event newEvent = new Event(path, duration, conversion, acquisition);
-
+        if ((!(Validators.isValidPath(path))) || (!(Validators.isValidAcquisition(acquisition))) || duration < 0 || conversion < 0){
+            throw new IllegalArgumentException();
+        }
+        addEvent(new Event(path, duration, conversion, acquisition));
     }
     /**
      * @throws IllegalArgumentException if e is null
@@ -108,7 +110,22 @@ public class GoogleAnalytics {
         if(e == null){
             throw new IllegalArgumentException();
         }
-        addEvent(e);
+        Resource resource = getResourceForPath(e.getPath());
+        if(resource == null){
+            resource = new Resource(e.getPath());
+            int index = 0;
+            while (index < resources.length && resources[index] != null) {
+                index++;
+            }
+            if(index == resources.length){
+                Resource[] newResources = new Resource[resources.length*2];
+                for(int i = 0; i < resources.length; i++){
+                    newResources[i] = resources[i];
+                }
+                resources = newResources;
+            }
+            resources[index] = resource;
+        }
+        resource.addEvent(e);
     }
-
 }

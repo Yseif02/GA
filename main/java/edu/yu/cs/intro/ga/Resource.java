@@ -39,14 +39,16 @@ public class Resource {
         for (int i = 0; i < events.length;i++){
             if(events[i] == null){
                 events[i] = e;
+                return;
             }else {
-                Event[] newEvents = new Event[events.length+10];
+                Event[] newEvents = new Event[events.length*2];
                 for (int j = 0; j < events.length; j++){
                     newEvents[j] = events[j];
                 }
                 for (int k = 0; k < newEvents.length;i++) {
                     if (newEvents[k] == null) {
                         newEvents[k] = e;
+                        events = newEvents;
                         return;
                     }
                 }
