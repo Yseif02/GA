@@ -70,15 +70,52 @@ public class GoogleAnalytics {
     The Array which is returned must not contain any null elements.
      */
     public Resource[] getResourcesSortedByTotalDuration(){
-        //take the array of events,
-        return null;
+        int index = 0;
+        while (index < resources.length && resources[index] != null){
+            index++;
+        }
+        Resource[] newResources = new Resource[index];
+        for(int i = 0; i < resources.length; i++){
+            newResources[i] = resources[i];
+        }
+        for (int i = 0; i < newResources.length; i++){
+            for(int j = 0; j < newResources.length; j++){
+                int resource1 = newResources[j].getTotalDuration();
+                int resource2 = newResources[j+1].getTotalDuration();
+                if(resource1 > resource2){
+                    Resource temp = newResources[j];
+                    newResources[j] = newResources[j+1];
+                    newResources[j+1] = temp;
+                }
+            }
+        }
+        return newResources;
     }
     /**
      * @return All the resources, sorted (lowest to highest) by total conversion value per
     resource. The Array which is returned must not contain any null elements.
      */
     public Resource[] getResourcesSortedByTotalConversion(){
-        return null;
+        int index = 0;
+        while (index < resources.length && resources[index] != null){
+            index++;
+        }
+        Resource[] newResources = new Resource[index];
+        for(int i = 0; i < resources.length; i++){
+            newResources[i] = resources[i];
+        }
+        for (int i = 0; i < newResources.length; i++){
+            for(int j = 0; j < newResources.length; j++){
+                double resource1 = newResources[j].getTotalConversion();
+                double resource2 = newResources[j+1].getTotalConversion();
+                if(resource1 > resource2){
+                    Resource temp = newResources[j];
+                    newResources[j] = newResources[j+1];
+                    newResources[j+1] = temp;
+                }
+            }
+        }
+        return newResources;
     }
     /**
      * Get acquisition totals across all resources.
@@ -89,7 +126,23 @@ public class GoogleAnalytics {
      * @see Validators#A_REFERRAL
      */
     public int[] getAcquisitionTotals(){
-        return null;
+        int index = 0;
+        while (index < resources.length && resources[index] != null){
+            index++;
+        }
+        Resource[] newResources = new Resource[index];
+        for(int i = 0; i < resources.length; i++){
+            newResources[i] = resources[i];
+        }
+
+        int[] totalAcquisitions = {0,0,0};
+        for (int i = 0; i < newResources.length; i++){
+           int[] resourceAcquisitions = newResources[i].getTotalAcquisitionCounts();
+           totalAcquisitions[0] += resourceAcquisitions[0];
+           totalAcquisitions[1] += resourceAcquisitions[1];
+           totalAcquisitions[2] += resourceAcquisitions[2];
+        }
+        return totalAcquisitions;
     }
     /**
      * @throws IllegalArgumentException if path or acquisition are invalid, or if duration or

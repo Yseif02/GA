@@ -123,5 +123,4 @@ public class Resource {
         acquisitionArray[2] = totalReferral;
         return acquisitionArray;
     }
-
 }
