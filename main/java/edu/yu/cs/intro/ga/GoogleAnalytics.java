@@ -21,7 +21,7 @@ public class GoogleAnalytics {
     public Resource getResourceForPath(String path){
         //given a path, see if there is a Resource path that matches this path
         for(Resource resource: resources){
-            if(path.equals(resource.getPath())){
+            if(resource != null && path.equals(resource.getPath())){
                 return resource;
             }
         }

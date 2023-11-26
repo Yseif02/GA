@@ -6,9 +6,9 @@ public class Resource {
         //custom method
         this.events[0] = new Event("456.html", 10, 5.5, "search");
         this.events[1] = new Event("456.html", 1, 5.5, "search");
-        this.events[2] = new Event("456.html", 8, 5.5, "search");
+        this.events[2] = new Event("456.html", 8, 5.5, "direct");
         this.events[3] = new Event("456.html", 7, 5.5, "search");
-        this.events[4] = new Event("456.html", 13, 5.5, "search");
+        this.events[4] = new Event("456.html", 13, 5.5, "referral");
     }
     private String path;
     /**
