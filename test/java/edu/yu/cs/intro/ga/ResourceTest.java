@@ -15,18 +15,18 @@ class ResourceTest {
         ga.addEvent("123.html", 6, 2.8, "referral");
         ga.addEvent("456.html", 10, 23.8, "search");
         ga.addEvent("456.html", 6, 2.8, "referral");
-        System.out.println("Acquisition");
-        ga.getAcquisitionTotals();//works
-        System.out.println("Resources path");
-        ga.getResourcesSortedByPath();//works
-        System.out.println("Resources Conversion");
-        ga.getResourcesSortedByTotalConversion();//works
-        System.out.println("Resources Duration");
-        ga.getResourcesSortedByTotalDuration();//works
-        //resource1.getTotalAcquisitionCounts();
-        //resource1.getTotalConversion();
-        //resource1.getEventsInChronologicalOrder();
-        //resource1.getTotalDuration();
+        //System.out.println("Acquisition");
+        //ga.getAcquisitionTotals();//works
+        //System.out.println("Resources path");
+        //ga.getResourcesSortedByPath();//works
+        //System.out.println("Resources Conversion");
+        //ga.getResourcesSortedByTotalConversion();//works
+        //System.out.println("Resources Duration");
+        //ga.getResourcesSortedByTotalDuration();//works
+        resource1.getTotalAcquisitionCounts();
+        resource1.getTotalConversion();
+        resource1.getEventsInChronologicalOrder();
+        resource1.getTotalDuration();
 
 
         /**

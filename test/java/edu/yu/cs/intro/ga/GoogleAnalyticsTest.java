@@ -12,7 +12,6 @@ class GoogleAnalyticsTest {
         //ga.addEvent(new Event("test.html", 30, 40.58, "search"));
         //ga.setResources();
         //ga.getResourcesSortedByPath();
-
     }
     @Test
     void getResourceForPath() {
