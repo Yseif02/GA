@@ -25,6 +25,7 @@ public class Resource {
     }
 
     public String getPath(){
+        //System.out.println(path);
         return this.path;
     }
     /**
@@ -45,7 +46,7 @@ public class Resource {
                 for (int j = 0; j < events.length; j++){
                     newEvents[j] = events[j];
                 }
-                for (int k = 0; k < newEvents.length;i++) {
+                for (int k = 0; k < newEvents.length;k++) {
                     if (newEvents[k] == null) {
                         newEvents[k] = e;
                         events = newEvents;
@@ -83,7 +84,9 @@ public class Resource {
     public int getTotalDuration(){
         int totalDuration = 0;
         for (Event event: events) {
-            totalDuration += event.getDuration();
+            if(event != null) {
+                totalDuration += event.getDuration();
+            }
         }
         return totalDuration;
     }
@@ -92,9 +95,15 @@ public class Resource {
      */
     public double getTotalConversion(){
         double totalConversion = 0;
+        System.out.println(totalConversion);
         for (Event event: events) {
-            totalConversion += event.getConversion();
+            if(event != null) {
+                System.out.println(totalConversion);
+                totalConversion += event.getConversion();
+                System.out.println(totalConversion);
+            }
         }
+        System.out.println(totalConversion);
         return totalConversion;
     }
     /**
@@ -105,17 +114,20 @@ public class Resource {
      * @see Validators#A_REFERRAL
      */
     public int[] getTotalAcquisitionCounts(){
+        //This method works
         int[] acquisitionArray = new int[3];
         int totalSearch = 0;
         int totalDirect = 0;
         int totalReferral = 0;
         for (Event event: events) {
-            if (event.getAcquisition().matches("search")){
-                totalSearch++;
-            } else if (event.getAcquisition().matches("direct")) {
-                totalDirect++;
-            } else if (event.getAcquisition().matches("referral")) {
-                totalReferral++;
+            if(event != null) {
+                if (event.getAcquisition().matches("search")) {
+                    totalSearch++;
+                } else if (event.getAcquisition().matches("direct")) {
+                    totalDirect++;
+                } else if (event.getAcquisition().matches("referral")) {
+                    totalReferral++;
+                }
             }
         }
         acquisitionArray[0] = totalSearch;

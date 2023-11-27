@@ -130,18 +130,20 @@ public class GoogleAnalytics {
         while (index < resources.length && resources[index] != null){
             index++;
         }
+        System.out.println(index);
+        System.out.println(resources[0].getPath());
         Resource[] newResources = new Resource[index];
-        for(int i = 0; i < resources.length; i++){
+        for(int i = 0; i < index; i++){
             newResources[i] = resources[i];
         }
-
         int[] totalAcquisitions = {0,0,0};
-        for (int i = 0; i < newResources.length; i++){
+        for (int i = 0; i < index; i++){
            int[] resourceAcquisitions = newResources[i].getTotalAcquisitionCounts();
            totalAcquisitions[0] += resourceAcquisitions[0];
            totalAcquisitions[1] += resourceAcquisitions[1];
            totalAcquisitions[2] += resourceAcquisitions[2];
         }
+        System.out.println(Arrays.toString(totalAcquisitions));
         return totalAcquisitions;
     }
     /**
