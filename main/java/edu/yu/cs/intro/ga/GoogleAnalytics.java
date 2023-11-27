@@ -46,7 +46,7 @@ public class GoogleAnalytics {
             }
         }
         for(Resource resource: newResources){
-            System.out.println(resource.getPath());
+            //System.out.println(resource.getPath());
         }
         System.out.println(counter);
         for (int i = 0; i < newResources.length - 1; i++) {
@@ -75,11 +75,11 @@ public class GoogleAnalytics {
             index++;
         }
         Resource[] newResources = new Resource[index];
-        for(int i = 0; i < resources.length; i++){
+        for(int i = 0; i < index; i++){
             newResources[i] = resources[i];
         }
-        for (int i = 0; i < newResources.length; i++){
-            for(int j = 0; j < newResources.length; j++){
+        for (int i = 0; i < newResources.length-1; i++){
+            for(int j = 0; j < newResources.length-1; j++){
                 int resource1 = newResources[j].getTotalDuration();
                 int resource2 = newResources[j+1].getTotalDuration();
                 if(resource1 > resource2){
@@ -88,6 +88,9 @@ public class GoogleAnalytics {
                     newResources[j+1] = temp;
                 }
             }
+        }
+        for(Resource resource: newResources){
+            System.out.println(resource.getTotalDuration());
         }
         return newResources;
     }
@@ -101,11 +104,11 @@ public class GoogleAnalytics {
             index++;
         }
         Resource[] newResources = new Resource[index];
-        for(int i = 0; i < resources.length; i++){
+        for(int i = 0; i < index; i++){
             newResources[i] = resources[i];
         }
-        for (int i = 0; i < newResources.length; i++){
-            for(int j = 0; j < newResources.length; j++){
+        for (int i = 0; i < newResources.length-1; i++){
+            for(int j = 0; j < newResources.length-1; j++){
                 double resource1 = newResources[j].getTotalConversion();
                 double resource2 = newResources[j+1].getTotalConversion();
                 if(resource1 > resource2){

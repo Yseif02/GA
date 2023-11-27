@@ -10,8 +10,8 @@ class GoogleAnalyticsTest {
     public static void main(String[] args) {
         GoogleAnalytics ga = new GoogleAnalytics();
         //ga.addEvent(new Event("test.html", 30, 40.58, "search"));
-        ga.setResources();
-        ga.getResourcesSortedByPath();
+        //ga.setResources();
+        //ga.getResourcesSortedByPath();
 
     }
     @Test
