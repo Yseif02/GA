@@ -3,11 +3,10 @@ package edu.yu.cs.intro.ga;
 import java.util.Arrays;
 
 public class GoogleAnalytics {
-
     Resource[] resources = new Resource[5];
     public Resource getResourceForPath(String path){
         for(Resource resource: resources){
-            if(resource != null && path.equals(resource.getPath())){
+            if(resource != null && path.toLowerCase().equals(resource.getPath())){
                 return resource;
             }
         }
@@ -28,8 +27,8 @@ public class GoogleAnalytics {
         }
         for (int i = 0; i < newResources.length - 1; i++) {
             for (int j = 0; j < newResources.length - 1; j++) {
-                String path1 = newResources[j].getPath();
-                String path2 = newResources[j + 1].getPath();
+                String path1 = newResources[j].getPath().toLowerCase();
+                String path2 = newResources[j + 1].getPath().toLowerCase();
                 if (path1.compareTo(path2) > 0) {
                     Resource temp = newResources[j];
                     newResources[j] = newResources[j + 1];

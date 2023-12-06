@@ -1,9 +1,10 @@
 package edu.yu.cs.intro.ga;
 
+import java.util.Arrays;
+
 public class Resource {
     Event[] events = new Event[5];
     private String path;
-
     public Resource(String path){
         if((Validators.isValidPath(path))){
             this.path = path;
@@ -11,7 +12,6 @@ public class Resource {
         }
         throw new IllegalArgumentException();
     }
-
     public String getPath(){
         return this.path;
     }
@@ -39,13 +39,11 @@ public class Resource {
         }
     }
     public Event[] getEventsInChronologicalOrder(){
-        int counter = 0;
-        for(Event event : events) {
-            if (event != null){
-                counter++;
-            }
+        int index = 0;
+        while (index < events.length && events[index] != null){
+            index++;
         }
-        Event[] newEvents = new Event[counter];
+        Event[] newEvents = new Event[index];
         for(int i =0; i < newEvents.length; i++ ){
             newEvents[i] = events[i];
         }

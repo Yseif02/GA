@@ -4,14 +4,12 @@ public class Validators {
     public static final String A_SEARCH = "search";
     public static final String A_DIRECT = "direct";
     public static final String A_REFERRAL = "referral";
-
     public static boolean isValidAcquisition(String acquisition){
         if(acquisition != null && (acquisition.equals(A_DIRECT) || acquisition.matches(A_REFERRAL) || acquisition.matches(A_SEARCH))){
             return true;
         }
         return false;
     }
-
     public static boolean isValidPath(String path){
         String lastFour = path.substring(path.length()-4);
         String lastFive = path.substring(path.length()-5);
